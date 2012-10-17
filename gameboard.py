@@ -2,6 +2,7 @@ class Gameboard:
     def __init__(self):
         self.board = {}
         self.powertiles = {}
+        self.letterValues = {}
 
 #############################################################################################    
 #    All board tiles are stored in two dictionaries - one with powertiles, one with letters #
@@ -13,7 +14,6 @@ class Gameboard:
     def standardEmptyBoard(self):
         column = 1
         row = 1
-        print "sup!"
         # 15x15 gameboard
         while column < 16:
             while row < 16:
@@ -37,7 +37,6 @@ class Gameboard:
         while column < 16:
             while row > 1:
                 self.powertiles[column, row] = '2w'
-                print 'BAM!'
                 row -=1
                 column +=1
             column +=1
@@ -101,7 +100,7 @@ class Gameboard:
         self.powertiles[6,14] = '3l'
         self.powertiles[10,14] = '3l'
 
-    def currLayout(self):
+    def initialLayout(self):
         row = 1
         column = 1
         while row < 16:
@@ -115,4 +114,31 @@ class Gameboard:
             print rowStr
             row += 1
             column = 1
+
+    def letterVals(self):
+        alphabet = 'abcdefghijklmnopqrstuvwxyz'
+        for letter in alphabet:
+            self.letterValues[letter] = 1
+        self.letterValues['d'] = 2
+        self.letterValues['g'] = 2
         
+        self.letterValues['b'] = 3
+        self.letterValues['c'] = 3
+        self.letterValues['m'] = 3
+        self.letterValues['p'] = 3
+
+        self.letterValues['f'] = 4
+        self.letterValues['h'] = 4
+        self.letterValues['v'] = 4
+        self.letterValues['w'] = 4
+        self.letterValues['y'] = 4
+
+        self.letterValues['k'] = 5
+        
+        self.letterValues['j'] = 8
+        self.letterValues['x'] = 8
+        self.letterValues['q'] = 10
+        self.letterValues['z'] = 10
+
+#        for letter in alphabet:
+#            print letter + " -->" + str(self.letterValues[letter])

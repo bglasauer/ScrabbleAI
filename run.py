@@ -1,6 +1,12 @@
 import gameboard
+import validWords
 
-b = gameboard.Gameboard()
-b.standardEmptyBoard()
-b.standardPowerTiles()
-b.currLayout()
+#load up the valid word dictionary
+words = validWords.validWords()
+words.loadWords()
+
+#initialize empty gameboard, power tiles and letter points
+board = gameboard.Gameboard()
+board.standardEmptyBoard()
+board.standardPowerTiles()
+board.letterVals()
