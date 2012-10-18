@@ -3,6 +3,7 @@ class Gameboard:
         self.board = {}
         self.powertiles = {}
         self.letterValues = {}
+        self.lettersLeft = []
 
 #############################################################################################    
 #    All board tiles are stored in two dictionaries - one with powertiles, one with letters #
@@ -48,6 +49,7 @@ class Gameboard:
         self.powertiles[1,8] = '3w'
         self.powertiles[15,8] = '3w'
         self.powertiles[1,15] = '3w'
+        self.powertiles[8,15] = '3w'
 
         # set double letter tiles
         self.powertiles[4,1] = '2l'
@@ -65,7 +67,7 @@ class Gameboard:
         self.powertiles[9,7] = '2l'
         self.powertiles[13,7] = '2l'
 
-        self.powertiles[3,8] = '2l'
+        self.powertiles[4,8] = '2l'
         self.powertiles[12,8] = '2l'
 
         self.powertiles[3,9] = '2l'
@@ -100,22 +102,25 @@ class Gameboard:
         self.powertiles[6,14] = '3l'
         self.powertiles[10,14] = '3l'
 
-    def initialLayout(self):
+    def layout(self):
         row = 1
         column = 1
         while row < 16:
             rowStr = ''
             while column < 16:
-                if (row,column) in self.powertiles:
-                    rowStr += self.powertiles[row,column] + " "
+                if not self.board[column,row] == None:
+                    rowStr += '[' + self.board[column,row]+ ' ]' + " "
+                elif (column,row) in self.powertiles:
+                    rowStr += '[' + self.powertiles[column,row] + ']' + " "
                 else:
-                    rowStr += "[] "
+                    rowStr += '[  ]' + " "   
                 column += 1
             print rowStr
             row += 1
             column = 1
 
-    def letterVals(self):
+# set up the 100 possible letters and the letter values
+    def letters(self):
         alphabet = 'abcdefghijklmnopqrstuvwxyz'
         for letter in alphabet:
             self.letterValues[letter] = 1
@@ -142,3 +147,15 @@ class Gameboard:
 
 #        for letter in alphabet:
 #            print letter + " -->" + str(self.letterValues[letter])
+
+        self.lettersLeft.extend(['a','a','a','a','a','a','a','a','a','b'])
+        self.lettersLeft.extend(['b','c','c','d','d','d','d','e','e','e'])
+        self.lettersLeft.extend(['e','e','e','e','e','e','e','e','e','f'])
+        self.lettersLeft.extend(['f','g','g','g','h','h','i','i','i','i'])
+        self.lettersLeft.extend(['i','i','i','i','i','j','k','l','l','l'])
+        self.lettersLeft.extend(['l','m','m','n','n','n','n','n','n','o'])
+        self.lettersLeft.extend(['o','o','o','o','o','o','o','p','p','q'])
+        self.lettersLeft.extend(['r','r','r','r','r','r','s','s','s','s'])
+        self.lettersLeft.extend(['t','t','t','t','t','t','u','u','u','u'])
+        self.lettersLeft.extend(['v','v','w','w','x','y','y','z'])
+        self.lettersLeft.extend(['blank','blank'])
